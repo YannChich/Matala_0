@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include "NumClass.h"
 
 // Power calculator.
 int Powernth (int a, int n){
@@ -43,14 +43,14 @@ int isPalindrom(int n){
     for (int i = 0; i < numlength(n)/2; i++)
     {
         if(numArray[i] != numArray[numlength(n)-1-i]){ 
-            flag =1;
+            flag =TRUE;
         }
     }
     if(flag){
-        return 0;
+        return FALSE;
     }
     else{
-        return 1;
+        return TRUE;
     }
     free(numArray);
 }
@@ -67,10 +67,10 @@ int isArmstrong(int n){
         sum+=Powernth(numArray[i],numlength(n));
     }
     if(origin == sum){
-        return 1;
+        return TRUE;
     }
     else{
-        return 0;
+        return FALSE;
     }
     free(numArray);
 }

@@ -1,6 +1,5 @@
 #include <stdlib.h>
-
-
+#include "NumClass.h"
 // Returns number length.
 int numLength(int a){
     int snum = 0;
@@ -28,7 +27,7 @@ int *PrintArr(int n){
 
 // will return if a number is prime.
 int isPrime(int n){
-    if(n==1) return 1;
+    if(n==1) return TRUE;
     int flag = 0;
     for (int i = 2; i<=n/2; i++)
     {
@@ -38,10 +37,10 @@ int isPrime(int n){
         }
     }
     if(flag){
-        return 0;
+        return FALSE;
     }
     else{
-        return 1;
+        return TRUE;
     }
 }
 
@@ -67,10 +66,10 @@ int isStrong(int n){
         sum+=Factorial(numArray[i]);
     }
     if(sum==origin){
-        return 1;
+        return TRUE;
     }
     else{
-        return 0;
+        return FALSE;
     }
     free(numArray);
 }

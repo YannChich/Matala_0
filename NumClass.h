@@ -1,5 +1,8 @@
 #ifndef FUNC_H
 #define FUNC_H
+#define FALSE 0
+#define TRUE 1
+
 
 // Strong number is a special number whose sum of the factorial of digits is equal to the original number.
 int isStrong(int n);

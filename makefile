@@ -1,16 +1,20 @@
 CC=gcc
 FLAGS= -Wall -g
+FLAGSD = -Wall -fPIC
+AR = ar
+
+
 
 all : mains maindloop maindrec loops
 
 mains:  main.o libclassrec.a
-	gcc -Wall -g main.c -L. libclassrec.a -o mains
+	${CC} ${FLAGS} main.c -L. libclassrec.a -o mains
 
 maindloop : main.o libclassloops.so
-	gcc -Wall -fPIC main.c ./libclassloops.so -o maindloop
+	${CC} ${FLAGSD} main.c ./libclassloops.so -o maindloop
 
 maindrec : main.o libclassrec.so
-	gcc -Wall -fPIC main.c ./libclassrec.so -o maindrec	
+	${CC} ${FLAGSD} main.c ./libclassrec.so -o maindrec	
 
 loopd : libclassloops.so
 recursived : libclassrec.so
@@ -18,28 +22,28 @@ recursives : libclassrec.a
 loops : libclassloops.a
 
 libclassloops.a : basicClassification.o advancedClassificationLoop.o
-	ar -rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
+	${AR} -rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
 
 libclassrec.so : basicClassification.o advancedClassificationRecursion.o
-	gcc -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o	
+	${CC} -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o	
 
 libclassloops.so : basicClassification.o advancedClassificationLoop.o
-	gcc -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
+	${CC} -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
 
 libclassrec.a : basicClassification.o advancedClassificationRecursion.o
-	ar -rcs libclassrec.a basicClassification.o advancedClassificationRecursion.o
+	${AR} -rcs libclassrec.a basicClassification.o advancedClassificationRecursion.o
 
 basicClassification.o : basicClassification.c NumClass.h
-	gcc -Wall -g -c basicClassification.c
+	${CC} ${FLAGS} -c basicClassification.c
 
 advancedClassificationLoop.o : 	advancedClassificationLoop.c NumClass.h
-	gcc -Wall -g -c advancedClassificationLoop.c
+	${CC} ${FLAGS} -c advancedClassificationLoop.c
 
 advancedClassificationRecursion.o : advancedClassificationRecursion.c NumClass.h
-	gcc -Wall -g -c advancedClassificationRecursion.c
+	${CC} ${FLAGS} -c advancedClassificationRecursion.c
 
 main.o : main.c NumClass.h
-	gcc -Wall -g -c main.c	
+	${CC} ${FLAGS} -c main.c	
 
 .PHONY: clean all
 

@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include "NumClass.h"
 // Power calculator.
 int Powernth (int a, int n){
     if(n==0){
@@ -36,16 +36,16 @@ int *PrintArrR(int n){
 // Overloading of the next function isPalindromRec below.
 int isPalindromRec(int numArray[], int start , int end){
     if(start >= end){
-        return 1;
+        return TRUE;
     }
     if(numArray[start]==numArray[end]){
         return isPalindromRec(numArray ,++start,--end);
     }
     else{
-        return 0;
+        return FALSE;
     }
     free(numArray);
-    return 0;
+    return FALSE;
     
 }
 
@@ -61,17 +61,17 @@ int isPalindrom(int n){
 // Overloading of the next function isArmstrongRec next.
 int isArmstrongRec(int numArray[], int n, int sum, int start){
     if(start == numLengthR(n) && sum == n){
-        return 1;
+        return TRUE;
     }
     if(start == numLengthR(n) && sum !=n){
-        return 0;
+        return FALSE;
     }
     else {
         sum+= Powernth(numArray[start], numLengthR(n));
         return isArmstrongRec(numArray, n , sum , ++start);
     }
     free(numArray);
-    return 0;
+    return FALSE;
 }
 
 // will return if a number is Armstrong number.
